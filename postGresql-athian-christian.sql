@@ -1,15 +1,50 @@
 -- WHERE
   --SELECT * FROM country
 -- What is the population of the US? (HINT: 278357000)
+SELECT name, population
+FROM country
+WHERE population = 278357000
+
 -- What is the area of the US? (HINT: 9.36352e+06)
+SELECT name, surfacearea
+FROM country
+WHERE surfacearea = 9.36352e+06
+
 -- Which countries gained their independence before 1963?
+SELECT name, indepyear
+FROM country
+WHERE indepyear < 1963
+
 -- List the countries in Africa that have a population smaller than 30,000,000 and a life expectancy of more than 45? (HINT: 37 entries)
+SELECT continent, population, lifeexpectancy
+FROM country
+WHERE population < 30000000 
+AND continent = 'Africa'
+AND lifeexpectancy > 45
+
 -- Which countries are something like a republic? (HINT: Are there 122 or 143?)
+SELECT name, population, governmentform
+FROM country
+WHERE governmentform IN ('Republic')
+
 -- Which countries are some kind of republic and achieved independence after 1945? (HINT: 92 entries)
 -- Which countries achieved independence after 1945 and are not some kind of republic? (HINT: 27 entries)
+SELECT name, population, governmentform
+FROM country
+WHERE governmentform IN ('Republic')
+AND indepyear > 1945
+
+
 -- ORDER BY
--- Which fifteen countries have the lowest life expectancy? (HINT: starts with Zambia, ends with Sierra Leonne)
+
+-- Which fifteen countries have the lowest life expectancy? (HINT: starts with 
+Zambia, ends with Sierra Leonne)
+SELECT name, population, lifeexpectancy
+FROM country
+ORDER BY lifeexpectancy ASC;
+
 -- Which fifteen countries have the highest life expectancy? (HINT: starts with Andorra, ends with Spain)
+
 -- Which five countries have the lowest population density (density = population / surfacearea)? (HINT: starts with Greenland)
 -- Which countries have the highest population density?(HINT: starts with Macao)
 -- Which is the smallest country by area? (HINT: .4)
