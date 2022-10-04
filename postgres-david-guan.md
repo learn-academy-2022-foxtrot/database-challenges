@@ -59,6 +59,30 @@ WHERE indepyear > 1945
 AND governmentform 
 NOT LIKE '%Republic'
 
+SELECT  name, lifeexpectancy
+FROM country
+WHERE lifeexpectancy >0
+ORDER BY  lifeexpectancy DESC
+
+LIMIT 15
 
 
+SELECT name, population/surfacearea AS AVG
+FROM country
+WHERE population > 0
+GROUP BY name, AVG
+ORDER BY AVG
 
+
+LIMIT 5
+
+SELECT name, AVG(population/surfacearea)
+FROM country
+GROUP BY name
+ORDER BY avg DESC 
+LIMIT 5
+
+SELECT name, surfacearea
+FROM country
+ORDER BY surfacearea ASC
+LIMIT 1
