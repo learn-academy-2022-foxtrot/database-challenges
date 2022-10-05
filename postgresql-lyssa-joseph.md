@@ -210,7 +210,25 @@ total poplulation is: 6,078,749,450
 Stretch Challenges
 Which countries have the letter ‘z’ in the name? How many?
 
+SELECT name
+FROM country
+WHERE name LIKE '%z%'
 
+"Azerbaijan"
+"Belize"
+"Bosnia and Herzegovina"
+"Brazil"
+"Kazakstan"
+"Kyrgyzstan"
+"Mozambique"
+"Swaziland"
+"Switzerland"
+"Tanzania"
+"Czech Republic"
+"Uzbekistan"
+"Venezuela"
+
+Total: 13
 
 
 
