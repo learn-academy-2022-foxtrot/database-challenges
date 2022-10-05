@@ -86,3 +86,38 @@ SELECT name, surfacearea
 FROM country
 ORDER BY surfacearea ASC
 LIMIT 1
+
+SELECT name, population
+FROM country
+WHERE population > 0
+ORDER BY population
+LIMIT 1
+
+SELECT name, surfacearea
+FROM country
+ORDER BY surfacearea DESC
+LIMIT 1
+
+SELECT name, population
+FROM country
+ORDER BY population DESC
+LIMIT 1
+
+SELECT name, headofstate
+FROM country
+ORDER BY population DESC
+LIMIT 1
+
+WITH populated_countries AS(
+SELECT name, population, gnp
+FROM country
+WHERE population > 0
+AND gnp > 0
+ORDER BY gnp DESC
+LIMIT 10
+)
+
+SELECT name, population, gnp
+FROM populated_countries
+ORDER BY population ASC
+LIMIT 1
