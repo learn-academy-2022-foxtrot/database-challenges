@@ -155,18 +155,65 @@ FROM least_pop_countries
 ORDER BY surfacearea DESC
 LIMIT 10
 
+
 Aggregate Functions: GROUP BY
 Which region has the highest average gnp? (HINT: North America)
 
+SELECT region, AVG(gnp)
+FROM country
+WHERE gnp > 0
+GROUP BY region
+ORDER BY AVG(gnp) DESC
+
+
 Who is the most influential head of state measured by surface area? (HINT: Elisabeth II)
+
+SELECT headofstate, SUM(surfacearea)
+FROM country
+WHERE population > 0
+GROUP BY headofstate
+ORDER BY SUM(surfacearea) DESC
+
+
 What is the average life expectancy for all continents?
+
+SELECT AVG(lifeexpectancy)
+FROM country
+
+
 What are the most common forms of government? (HINT: use count(*))
+
+SELECT governmentform, COUNT(governmentform) AS total
+FROM country
+GROUP BY governmentform
+ORDER BY total DESC
+
+
 How many countries are in North America?
+
+SELECT region, COUNT(name)
+FROM country
+WHERE region = 'North America'
+GROUP BY region
+ORDER BY COUNT(name) DESC
+
+5
+
+
 What is the total population of all continents?
 
+SELECT SUM(population)
+FROM country
+
+total poplulation is: 6,078,749,450
 
 Stretch Challenges
 Which countries have the letter ‘z’ in the name? How many?
+
+
+
+
+
 Of the smallest 10 countries by area, which has the biggest gnp? (HINT: Macao)
 Of the smallest 10 countries by population, which has the biggest per capita gnp?
 Of the biggest 10 countries by area, which has the biggest gnp?
