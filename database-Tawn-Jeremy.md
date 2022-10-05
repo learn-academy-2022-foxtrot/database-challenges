@@ -221,20 +221,30 @@ ORDER BY country.gnp DESC
 Who is the most influential head of state measured by surface area? (HINT: Elisabeth II)
 --work in progress--
 ```sql
-WITH populated_countries AS (
-	SELECT name, population, surfacearea
-	FROM country
-	WHERE population > 0
-	ORDER BY population DESC
-	LIMIT 10
-	)
-SELECT name, population, surfacearea
-FROM populated_countries
-ORDER BY surfacearea ASC
-LIMIT 10;
+SELECT SUM(surfacearea), headofstate
+FROM country
+WHERE population > 0
+GROUP BY headofstate 
+ORDER BY SUM DESC
 ```
 What is the average life expectancy for all continents?
+
+```sql
+SELECT continent, AVG(lifeexpectancy)
+FROM country
+GROUP BY continent;
+```
+
 What are the most common forms of government? (HINT: use count(*))
+Republic 
+
+```sql
+SELECT governmentform, COUNT(*)
+FROM country
+GROUP BY governmentform
+ORDER BY COUNT DESC
+```
+
 How many countries are in North America?
 What is the total population of all continents?
 Stretch Challenges
