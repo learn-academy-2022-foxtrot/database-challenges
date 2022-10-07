@@ -139,7 +139,6 @@ GROUP BY region, country.gnp
 ORDER BY country.gnp DESC
 
 -- Who is the most influential head of state measured by surface area? (HINT: Elisabeth II)
-
 --This one was the most difficult to me. Every tyme I got Putin 🤪 Finally ELISABETH II 🥳
 
 SELECT headofstate, SUM(surfacearea)
