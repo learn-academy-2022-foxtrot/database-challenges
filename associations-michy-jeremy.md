@@ -14,7 +14,7 @@ rails g model Owner name:string address:string
 
 
 
-# Challenges
+## Challenges
 ## Create three owners and save them in the database
 ```ruby
 Owner.create(name:'Joe', address:'123 Street lane')
