@@ -86,3 +86,16 @@ end
 
 validates :street_numer, :street_name, :city, :state, :zip, presence: true
 ```
+
+# As a developer, I need each Account password to have at least one number
+
+```ruby
+it "is not valid if password does not contain a digit" do
+    account = Account.create(username: 'nate', password: 'password', email: 'nate@gmail.com')
+    expect(account.errors[:password]).to_not be_empty
+  end
+
+validates :password, format: {with: /\d+/}
+```
+
+# As a developer, I want to validate that Address street_number, street_name, zip are unique for within an account.
