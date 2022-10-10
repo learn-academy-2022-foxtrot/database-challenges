@@ -99,3 +99,48 @@ validates :password, format: {with: /\d+/}
 ```
 
 # As a developer, I want to validate that Address street_number, street_name, zip are unique for within an account.
+
+```ruby
+RSpec.describe Address, type: :model do
+  it "is valid with valid attributes" do
+    guan = Account.create(username: 'guanchan', password: 'password123', email: 'guan@gmail.com')
+    guanaddress = guan.addresses.create(street_numer: 2223, street_name: 'main st', city: 'San Diego', state: 'California', zip: 92154)
+    expect(guanaddress).to be_valid
+  end
+  
+  it "is not valid if the street_name is not unique" do
+    guan = Account.create(username: 'guanchan', password: 'password123', email: 'guan@gmail.com')
+    guanaddress = guan.addresses.create(street_numer: 2223, street_name: 'main st', city: 'San Diego', state: 'California', zip: 92154)
+    guanaddress1 = guan.addresses.create(street_numer: 2223, street_name: 'main st', city: 'San Diego', state: 'California', zip: 92154)
+    expect(guanaddress1.errors[:street_numer]).to_not be_empty
+    expect(guanaddress1.errors[:street_name]).to_not be_empty
+    expect(guanaddress1.errors[:zip]).to_not be_empty
+  end
+
+end
+
+validates :street_numer, uniqueness: { scope: :account_id }
+validates :street_name, uniqueness: { scope: :account_id }
+validates :zip, uniqueness: { scope: :account_id }
+```
+
+# As a developer, I want to validate that the Address street_number and zip are numbers.
+
+```ruby
+it "is not valid if street_number and zip are not numbers" do
+    guan = Account.create(username: 'guanchan', password: 'password123', email: 'guan@gmail.com')
+    guanaddress = guan.addresses.create(street_numer: 'numbers', street_name: 'main st', city: 'San Diego', state: 'California', zip: 'zipcode')
+    expect(guanaddress.errors[:street_numer]).to_not be_empty
+    expect(guanaddress.errors[:zip]).to_not be_empty
+  end
+
+validates :zip, numericality: { only_integer: true }
+validates :street_numer, numericality: { only_integer: true }
+```
+
+# As a developer, I want to see a custom error message that says "Please, input numbers only" if street_number or zip code are not numbers.
+
+```ruby
+validates :zip, numericality: { only_integer: true, message: 'Please, input numbers only' }
+validates :street_numer, numericality: { only_integer: true, message: 'Please, input numbers only' }
+```
