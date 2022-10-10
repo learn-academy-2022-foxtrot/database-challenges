@@ -42,6 +42,10 @@ end
 
 As a developer, I need each username to be unique.
 
+```Ruby
+validates :username, uniqueness: true
+```
+
 As a developer, I need each password to be at least 6 characters long.
 
 As a developer, I need each password to be unique.
