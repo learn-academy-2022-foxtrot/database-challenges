@@ -36,7 +36,7 @@ As a developer, I need every username to be at least 5 characte-rs long.
 ```Ruby
 class Account < ApplicationRecord
     validates :username, :password, :email, presence: true
-    validates :username, length: {in: 5..20}
+    validates :username, length: {minimum: 5}
 end
 
   it 'username is at least 5 characters long' do
@@ -62,7 +62,7 @@ As a developer, I need each password to be at least 6 characters long.
 
 ```Ruby
 
- validates :password, length: {in: 6..20}
+ validates :password, length: {minimum: 6}
 
 it 'password is at least 6 characters long' do
       account = Account.create(username:'Michael', password:'password123', email:'thisis@fun.com')
