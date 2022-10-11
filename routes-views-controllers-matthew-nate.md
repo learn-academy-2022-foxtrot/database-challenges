@@ -17,17 +17,25 @@ end
 <p> <%= @pharaoh %> </p>
 <ul>
     <% @kings.each do |king| %>
-    <li> <%= king %> </li>
     <% end %>
-    <%= link_to 'Matthew', '/matthew' %>
-
+    <li><%= link_to 'Matthew', '/matthew' %></li>
+    <li><%= link_to 'Nate', '/nate' %></li>
 </ul>
 ```
 # matthew.html.erb
+<h3>About King Matthew</h3>
 <ul>
     <li>Snowboarding</li>
     <li>Traveling</li>
     <li>Concerts/Festivals</li>
+</ul> 
+
+# nate.html.erb
+<h3>About King Nate</h3>
+<ul>
+    <li>Chargers Football</li>
+    <li>Gaming</li>
+    <li>Pizza</li>
 </ul> 
 
 # routes.rb
@@ -43,5 +51,5 @@ Rails.application.routes.draw do
   get '/matthew' => 'home#matthew'
 
   get '/nate' => 'home#nate'
-  
 end
+```
